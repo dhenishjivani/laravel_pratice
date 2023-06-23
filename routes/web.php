@@ -36,6 +36,8 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Demo;
 use App\Http\Controllers\registrationFormController;
 use App\Http\Controllers\resourceController;
+use App\Http\Controllers\SongController;
+use App\Http\Controllers\SingerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -181,3 +183,9 @@ Route::resource("/relation", GroupController::class);
 
 Route::get('/saveGroup',[GroupController::class,'saveGroupData']);
 Route::get('/saveMember',[GroupController::class,'saveMemberData']);
+
+Route::get('song',[SongController::class,'addSong']);
+Route::get('singer',[SingerController::class,'addSinger']);
+Route::get('getSong/{id}',[SongController::class,'getSong']);
+Route::get('getSinger/{id}',[SingerController::class,'getSinger']);
+
