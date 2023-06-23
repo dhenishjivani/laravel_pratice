@@ -23,6 +23,15 @@
 
 <body>
     <div class="container mt-5">
+        <form action="" class="col-9">
+            <input type="search" name="search" class="form-control" placeholder="Search by name or email"
+                value="@if (Request::query('search')) {{ Request::query('search') }}@endif">
+            <button type="submit" class="btn btn-outline-success"
+                style="position: absolute; right: 33rem; top: 3.1rem">Search</button>
+        </form>
+        <a href="{{ route('register.create') }}"><button class="btn btn-outline-secondary"
+                style="position: absolute; right: 15rem; top: 3.1rem">Add User</button></a>
+        <br><br>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -70,7 +79,7 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('register.create') }}"><button class="btn btn-outline-secondary">Add User</button></a>
+        {{$data->links()}}
     </div>
 </body>
 

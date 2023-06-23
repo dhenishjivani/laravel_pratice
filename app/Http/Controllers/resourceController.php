@@ -10,9 +10,15 @@ class resourceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Demo::all();
+        $search = $request['search'] ?? "";
+        $data = Demo::where('id', '>', 0);
+        if ($search != "") {
+            // Where ni condition hase aaya 
+            $data = Demo::where('name', 'LIKE', "%$search%")->orWhere('email', 'LIKE', "%$search%");
+        }
+        $data = $data->paginate(8);
         return view('displayFormData', ['data' => $data]);
         //
     }
