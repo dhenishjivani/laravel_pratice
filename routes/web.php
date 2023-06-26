@@ -22,6 +22,7 @@
 // App\Providers\AppServiceProvider ma je Bind karelu che aene apane aya make thi execute kari saki chiye
 // Custome Providers pan banay saki aene register che ne ae Config\app.php ma karavanu 
 
+use App\Http\Controllers\collectionController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\queryBuildingController;
@@ -188,4 +189,6 @@ Route::get('song',[SongController::class,'addSong']);
 Route::get('singer',[SingerController::class,'addSinger']);
 Route::get('getSong/{id}',[SongController::class,'getSong']);
 Route::get('getSinger/{id}',[SingerController::class,'getSinger']);
+
+Route::get('collection',[collectionController::class,'collections']);
 
