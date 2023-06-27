@@ -27,12 +27,20 @@ class Demo extends Model
     // }
 
 
-    // New in laravel aek j method bane mate get and set mate 
-    protected function Name(): Attribute
-    {
-        return Attribute::make (
-            get: fn ($value) => strtoupper($value),
-            set: fn ($value) => ucfirst($value),
-        );
-    }
+    // New in laravel aek j method bane mate get and set mate
+    // protected function Name(): Attribute
+    // {
+    //     return Attribute::make (
+    //         get: fn ($value) => strtoupper($value),
+    //         set: fn ($value) => ucfirst($value),
+    //     );
+    // }
+
+
+    // aa Attribute Casting kevay jema protected method banavani and khali je field ne modify karvi hoy aeno array banay nakhvano
+    // aa atyare nyy chale kem ke already 100+ data padela che and aene encryt to kari nakhase pan decrypt nyy saki sake sarkhaye aetale payload is invalid ni error avse
+    // protected $casts = [
+    //     'address' => 'encrypted'
+    //     // field       // su perform karvu che ae
+    // ];
 }
