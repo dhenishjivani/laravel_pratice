@@ -3,8 +3,8 @@
 // dd(request());
 // dd(request()->bearerToken());
 // dd(request()->path());
-// dd(request()->url());   // aa ona jem j te ke ?(question mark) karine apyu hase ae ama nyy batave 
-// dd(request()->fullUrl());    // aama full url batavse ? mark vadu pan 
+// dd(request()->url());   // aa ona jem j te ke ?(question mark) karine apyu hase ae ama nyy batave
+// dd(request()->fullUrl());    // aama full url batavse ? mark vadu pan
 // dd(request()->method());
 // dump(request()->header());
 // dd(request()->header('host'));
@@ -20,7 +20,7 @@
 // dd(app());
 // dd(app()->make('Hello'));
 // App\Providers\AppServiceProvider ma je Bind karelu che aene apane aya make thi execute kari saki chiye
-// Custome Providers pan banay saki aene register che ne ae Config\app.php ma karavanu 
+// Custome Providers pan banay saki aene register che ne ae Config\app.php ma karavanu
 
 use App\Http\Controllers\collectionController;
 use App\Http\Controllers\FirstController;
@@ -59,7 +59,7 @@ use App\Http\Controllers\SingerController;
 // //     return redirect("home");
 // // });
 
-// Route::get('/{_}', function ($names) {  // aya tukma variable j bane che aetale lettes ka underscode j chalse 
+// Route::get('/{_}', function ($names) {  // aya tukma variable j bane che aetale lettes ka underscode j chalse
 //     // echo $name;
 //     return view('first',['id'=> $names]);
 // });
@@ -80,7 +80,7 @@ Route::view('homes', '/blade_practice');
 
 // Route::get("user/{name}", [UserController::class, 'show']);    // single parameter
 
-// Route::get("user/name/{name}/age/{age?}", [UserController::class, 'display'])->middleware(["age", "userTest"]);  // Multiple age? -->> aa default value mate che ho 
+// Route::get("user/name/{name}/age/{age?}", [UserController::class, 'display'])->middleware(["age", "userTest"]);  // Multiple age? -->> aa default value mate che ho
 
 Route::get('name/{name}', [UserController::class, 'show']);
 // // Route::get('/{about}' , FirstController::class);
@@ -101,17 +101,17 @@ Route::get("apidata", [UserController::class, 'getApiData']);
 // // Route::match(['get','post'],'form','/form');
 // // Route::view("form", "/form");
 
-Route::get("data/name/{name}/age/{age}", function ($names, $age) {       // aya je name che ae niche vat thay che 
+Route::get("data/name/{name}/age/{age}", function ($names, $age) {       // aya je name che ae niche vat thay che
     return "Hello" . $names . "! Your Age is:" . $age;
 })->where(["name" => "[a-zA-Z]+", 'age' => '[0-9]+']);
 
-// aya je name che ae j name url vada variable ma rakhavo pade 
-// aa aena mate hatu ke apne khali letters j enter thava devana che aetale -->> space ke _ ke aevu kay nyy chale ama 
-//Jo vadhare variable leva hoy to array banay nakhvano 
+// aya je name che ae j name url vada variable ma rakhavo pade
+// aa aena mate hatu ke apne khali letters j enter thava devana che aetale -->> space ke _ ke aevu kay nyy chale ama
+//Jo vadhare variable leva hoy to array banay nakhvano
 
 Route::get("testValidationOnInput/{number}", function ($num) {
     return $num;
-});     // aa chene app\Providers\RouteServiceProvider.php karine file che tya validation mukela che tyathi check kare che where ni jagya ye aa use kai saki apane ama dhayn rakhava jevu ae che ke providers vadi file ma je name apyu hase apne ae j name aya {} ma pass karvanu to j work karse ho 
+});     // aa chene app\Providers\RouteServiceProvider.php karine file che tya validation mukela che tyathi check kare che where ni jagya ye aa use kai saki apane ama dhayn rakhava jevu ae che ke providers vadi file ma je name apyu hase apne ae j name aya {} ma pass karvanu to j work karse ho
 
 Route::post("loginForm", [sessionController::class, 'login']);
 Route::view("loginUser", "sessionForm");

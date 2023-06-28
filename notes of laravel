@@ -1,0 +1,161 @@
+Reduce your work and you can save your losts of time with the help of Resource
+
+It create some function inside the controller automatically
+
+If we want to creater CURD then we can use Resource because it create some function for that 
+and we just need to make only one route for that 
+
+php artisan make:controller controller_name --resource
+
+Route::resource   or 	Route::apiResource 	game te rakhi saki 
+
+controller ma index method ma kyk return karay devanu je postman ma url apine joy sakase 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+toArray()  method jem che aevi j method toJson() method che 
+
+jyare apane olu Model::all()	 kari chiye ae apane Eloquent collection ape che aemathi apane khali main data j joto hoy to aena mate toArray() ne ae function use thay 
+
+$car->name 	aama collection print thay 
+$car['name']	aama array print thay 
+
+You Usually don't convert a collection into a Json object but you do convert into an array
+Json is mostlly used for api stuff
+
+We can convert the result data into json with only give toJson  method 
+json will convert it to a long string sentence so we can't loop over it 
+so we need to Decode it so json object ma convert thay jase aetale apne
+$car->name  	aam kari nakhvanu pachu kem ke have ae object hase 
+
+json badhu return karse timestamp ne karane pan kyarek apane ae badhu na display karavu hoy to 
+To aene Hide karvu pade ae kem karvu to ke Model ma jay ne 
+protected $hidden = ['password' , 'access_token'] aam karine jetali field hide karvi hoy aetali api devani aetale ae hide thay jase ne outout data ma nyyy dekhay ae 
+
+aavi j rite aek visible method pan che aema je je field display karavi hoy ae api sakay to biji badhi field automatically hide thay jase 
+protected $visible = ['name' , 'email' , 'mobile']	aam karine khali aa 3 j field display kari saki 
+
+aetale $hidden and $visible 2ne method toArray() sathe pan chale ho 
+
+If you would like to make some typically hidden attributes visible on a given model instance, you may use the makeVisible method. The makeVisible method returns the model instance:
+return $user->makeVisible('attribute')->toArray()
+
+If you wish to temporarily override all of the visible or hidden attributes, you may use the setVisible and setHidden methods respectively:
+
+Tukma thodok time mate ke ae query mate khali model na koy hide karela ke visible karela attributes ne override karva che to aa badho methods use thay 
+makeVisible  , makeHidden , setVisible , setHidden 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Alert Show karvni rito:
+1. with('status' , 'message')	aamathi alert api saki 
+   sesion thi check karavanu blade file ma ke status variable che ke kem 
+
+2. and biju flash session thi pan alert api saki 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+invisible karine aek method che je migration vakhate jo api day to ae field nyy dekhay jyare apane select * karine ke m josu tyare 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Model Properties:
+
+	1. protected $table 
+	2. protected $primaryKey
+	3. protected $keyType = 'string'
+	4. protected $incrementing = false	jo numeric ni badale biji koy key primary tarike hoy to 
+	5. protected $timestamps = false 	apne no jotu hoy to false kari devanu 	
+		const CREATED_AT = 'creation_date'	apanu custome name jotu hoy field mato aavi rite api saki 
+		const UPDATED_AT = 'updation_date'
+	6. protected $connection = 'sqlite'	jo alag database nu table use karvu hoy to 
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Occasionally, when converting models to arrays or JSON, you may wish to add attributes that do not have a corresponding column in your database. To do so, first define an accessor for the value:
+
+If you would like the accessor to always be appended to your model's array and JSON representations, you may add the attribute name to the appends property of your model. Note that attribute names are typically referenced using their "snake case" serialized representation, even though the accessor's PHP method is defined using "camel case":
+
+protected $appends = ['is_admin'];
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ketali var Query execution thay che ae jova mate 
+\DB::enableQueryLog();		start karvanu ne ke enable karvanu aena jevu 
+\DB::getQueryLog(); 		last ma anathi jova malse ketali qury execution thay che array ma 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Seeder -->> thi Real data add thase means ke je apane website ma use karsu ae 
+
+Factory -->> Testing data jevu jyare apane website banavata hoy tyare testing mate ke aena mate use karta hoy ae data aetale ae Fake data hoy mota bhage 
+Jo koy table relation ma hoy PK and FK thi and aema aek j command thi 2ne table ma data add karvo hoy to Factory j use thay aema Seeder na chale 
+
+Seeder ma kam karta hoy tyare apane Model ma kay na karvanu thay khali Model banay rakhvanu kem ke aena prural name nu table DB ma banavyu hase apane ka migration thi banay nakhvanu 
+php artisan make:seeder StudentSeeder		 aam j name apvanu and students name nu table DB ma hovu joy pachad Seeder pan lakhvanu j ho 
+
+Seeder ma run name ni method baneli j hase 
+aema je feild no dummy data nakhvano hoy ae lakhi nakhvanu 
+pachi Seeder ni DatabaseSeeder.php file ma lakhvanu ke aapne kay kay seeder file run karavi che aene call karvanu 
+like $this->call([customSedderName::class]);
+
+jo vadhare seeder files ne run karavni hoy to 
+like $this->call([
+	customSedderName::class,
+	customSedderName2::class
+	]);	aavi rite karay saki 
+
+php artisan db:seed 	run karvanua aetale data gayo samkarto 
+
+
+foreach no use karvu hoy to laravel ni method ave che collect and each karine aeno use kari saki 
+insert method ave che aek laravel ni aeno use karvano loop ni andar 
+
+php artisan migrate:fresh --seed 	drop karine pachu migrate karine seed thase 
+
+php artisan db:seed --class=customSedderName  		only particular seeder file run thase 
+
+Jo vadhu data joto hoy to ae file bov moti thay jay aena mate json data nu new folder banavine aema file banay nakhvani and aema 
+[{ }]	aam jem json formate ma data insert kari devano tya j pachi ae file ne ke data ne 
+
+Seeder vadi file ma include karva mate aek variable lay le File name ni class ave che aeno use karvano 
+use Illuminate\Support\Facades\File;		aane include karavu pade pela 
+
+$json = File::get(path:'ae file jya hoy aeno path');
+pachi json ne decode pan karvo pade 
+
+json data sathe kam karta hoy tyare insert method nuuu create method j use karvi 
+
+Production server upar aa fake data vadi file run karava mate 
+php artisan db:seed --force
+
+
+php artisan make:factory StudentFactory		aavi rite banay aetale 
+database->factories ma dekhase jema aek method baneli hase 
+
+    public function definition(): array		ama array return karse jyare ola ma void hatu means kay nyy m 
+    {
+        return [
+            // aya avu lakhvanu 
+            
+            'name'=>fake()->name(),
+            'email'=>fake()->email()		aavi rite je kay pan data insert karvo hoy ae kari saki 
+            // aavi ghani badhi submethods che name ne emaile jevi aetale je method hase aene j insert kari sakisu 
+        ];
+    }
+    
+    pachi oli seeders->DatabaseSeeder.php file ma 
+    model import karvanu and 
+    modelname::factory()->count(aya jetala fake data insert karva hoy aetala kari devana)->create();
+    pachi php artisan db:seed 
+    
+    age ma kema restriction matenu pan methods che 
+    numberBetween(18, 30)	ama badha fake data 18 thi 30 vache na j avse 
+    
+    modelname::factory(5)->create();	dairect factory na parameter ma pan api saki alag thi count() lakhvani jarur nyy kay 
+    
+    dairect DatabaseSeeder.php ama na use karvu hoy ne alg file banavi hoy to aa line modelname::factory(5)->create(); alag file ma lakhi nakhvani 
+    and DatabaseSeeder.php aa file ma $this->call method che ae use kari levani ne ae seeder file nu name api devanu 
+    
+    php artisan make:factory StudentFactory --model=Studel 	model and factory bane file sathe banse
+    php artisan make:model ModelName -f		same kam karse bey 
+    php artisan migrate:fresh --seed 		migration and seeding
