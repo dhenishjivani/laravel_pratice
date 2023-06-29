@@ -159,3 +159,37 @@ database->factories ma dekhase jema aek method baneli hase
     php artisan make:factory StudentFactory --model=Studel 	model and factory bane file sathe banse
     php artisan make:model ModelName -f		same kam karse bey 
     php artisan migrate:fresh --seed 		migration and seeding
+    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	koy person ne aena username and password thi validate che ke nyyy ae chek kari aene Authencate karyo ae user ne ke Authentication karyu m kevay 
+	Authentication - Authentication is about validating your credentials like username and password to verify your identity.
+	Like apane flight ma jay thare Ticket batavi pade ke aenathi apane andar java de to aene apanu Authentication karyu kevay 
+	
+	Authorization means koy user ne senu access apvu 	aa che ne mara khay mujab Authenticat person mate j hoy 
+	Like Simform ma ava tyare Authentication thayu ke je select thaya ta ae j che ne aa badha pachi ae j Authenticate karela persons ne su access apvu 
+	ke ae trainee che ke su che ae pramane to aene Authorization kevay 
+	
+	Authorization - Authorization is the process to determine whether the authenticated user has access to the particuar resources. It checks your rightsto grant you access resources such as 
+	information , database , files, etc.
+	Like flight ma gaya pachi tame aa j seat par besi sako ke tamane aavo nasto malse ne aevu ae authorization kevay 
+	
+	
+	Guards and Providers name ni facilities che laravel ma
+	
+	Guards define how users are authenticated for each request 
+	Providers define how users are retrieved from your persistent storage
+	Your application's authentication configuration file is located at config/auth.php.
+	
+	Laravel Authnetication tools:
+		Laravel Breeze, 
+		Laravel Jetstream
+		Laravel Fortify.
+
+amuk default laravel Eloquent authentication driver ma nu aek $rememberToken()  karine che je olu 
+remember me vadu checkbox ave khabar ke password save karavo ke avu to ae aevu Token ne rakhase 	e nullable string of 100 charachters nu hoy 
+
+Laravel Breeze is a minimal, simple implementation of all of Laravel's authentication features, including login, registration, password reset, email verification, and password confirmation. Laravel Breeze's view layer is made up of simple Blade templates styled with Tailwind CSS
+
+Install Laravel Breeze - composer require Laravel/breeze --dev
+Publish Auth resources - php artisan breeze:install 
