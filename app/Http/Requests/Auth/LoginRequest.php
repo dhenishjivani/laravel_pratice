@@ -59,12 +59,14 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited(): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        // We can change Login Atteps here
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 3)) {
             return;
         }
 
         event(new Lockout($this));
 
+        // We can change seconds here
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([

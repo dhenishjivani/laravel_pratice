@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('authUsers',[AuthUserController::class, 'show_auth_user']);
+Route::get('checkUsers',[AuthUserController::class, 'check_auth_user']);
+Route::get('/report' , function () {
+    return view('report');
+})->middleware('auth');
 require __DIR__.'/auth.php';
