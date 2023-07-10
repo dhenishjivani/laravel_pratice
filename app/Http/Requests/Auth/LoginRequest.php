@@ -59,7 +59,7 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited(): void
     {
-        // We can change Login Atteps here
+        // We can change Login Attempts here
         if (! RateLimiter::tooManyAttempts($this->throttleKey(), 3)) {
             return;
         }
