@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -128,3 +129,13 @@ Route::get('/test' , [TestController::class , 'index']);
 Route::get('/tests' , function() {
 dd(Cache::get('name'));
 });
+
+
+Route::post('imageUpload' , [ImageController::class , 'store']);
+Route::view('imageUpload' , 'imageUpload');
+Route::get('/imageDisplay' , function() {
+    return view('imageDisplay');
+});
+Route::get('/download_local' , [ImageController::class , 'download_local']);
+Route::get('/download_public' , [ImageController::class , 'download_public']);
+
