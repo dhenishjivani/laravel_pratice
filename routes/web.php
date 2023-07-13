@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\SendOrderMailController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -139,3 +140,4 @@ Route::get('/imageDisplay' , function() {
 Route::get('/download_local' , [ImageController::class , 'download_local']);
 Route::get('/download_public' , [ImageController::class , 'download_public']);
 
+Route::get('SendMail' , [SendOrderMailController::class , 'SendMail']);
