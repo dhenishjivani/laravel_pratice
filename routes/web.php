@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\RateLimiterController;
 use App\Http\Controllers\SendOrderMailController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -47,14 +48,14 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 
 // After verification we need login and for that called login method of MailController
-Route::get('/login',function(){
+Route::get('/login', function () {
     return view('loginUser');
 })->name('login');
-Route::post('/login',[MailController::class,'login']);
+Route::post('/login', [MailController::class, 'login']);
 
 
 // When Authentication and verification both complete then this view is call
-Route::view('/home', 'home')->middleware(['auth' , 'verified']);
+Route::view('/home', 'home')->middleware(['auth', 'verified']);
 
 
 // If verification is remaing and we are try to log in then this route will be run
@@ -86,8 +87,8 @@ Route::post('/forgotPassword', function (Request $request) {
     );
 
     return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
 
 
@@ -119,25 +120,25 @@ Route::post('/reset-password', function (Request $request) {
     );
 
     return $status === Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
 
 // Cache in laravel
-Route::get('/test' , [TestController::class , 'index']);
+Route::get('/test', [TestController::class, 'index']);
 // aek j route ma put karavsu amuk second mate ne pachu tya j get karavasu to locho j padse ne aetale aa second route aena mate che
-Route::get('/tests' , function() {
-dd(Cache::get('name'));
+Route::get('/tests', function () {
+    dd(Cache::get('name'));
 });
 
 
-Route::post('imageUpload' , [ImageController::class , 'store']);
-Route::view('imageUpload' , 'imageUpload');
-Route::get('/imageDisplay' , function() {
+Route::post('imageUpload', [ImageController::class, 'store']);
+Route::view('imageUpload', 'imageUpload');
+Route::get('/imageDisplay', function () {
     return view('imageDisplay');
 });
-Route::get('/download_local' , [ImageController::class , 'download_local']);
-Route::get('/download_public' , [ImageController::class , 'download_public']);
+Route::get('/download_local', [ImageController::class, 'download_local']);
+Route::get('/download_public', [ImageController::class, 'download_public']);
 
-Route::get('SendMail' , [SendOrderMailController::class , 'SendMail']);
+Route::get('SendMail', [SendOrderMailController::class, 'SendMail']);
