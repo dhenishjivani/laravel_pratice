@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventListenerTestController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\notificationController;
@@ -146,3 +147,4 @@ Route::get('SendMail', [SendOrderMailController::class, 'SendMail']);
 
 Route::get('/notificationSend' , [notificationController::class , 'notificationSend']);
 
+Route::get('eventListener' , [EventListenerTestController::class , 'eventListener']);
