@@ -23,6 +23,7 @@
 // Custome Providers pan banay saki aene register che ne ae Config\app.php ma karavanu
 
 use App\Http\Controllers\collectionController;
+use App\Http\Controllers\fastController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\queryBuildingController;
@@ -227,3 +228,5 @@ Route::get('collection',[collectionController::class,'collections']);
 //     return view('report');
 // })->middleware('auth');
 // require __DIR__.'/auth.php';
+
+Route::get('chal' , fastController::class);
