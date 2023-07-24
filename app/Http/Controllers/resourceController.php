@@ -15,7 +15,7 @@ class resourceController extends Controller
         $search = $request['search'] ?? "";
         $data = Demo::where('id', '>', 0);
         if ($search != "") {
-            // Where ni condition hase aaya 
+            // Where ni condition hase aaya
             $data = Demo::where('name', 'LIKE', "%$search%")->orWhere('email', 'LIKE', "%$search%");
         }
         $data = $data->paginate(8);
@@ -40,7 +40,7 @@ class resourceController extends Controller
         //
         $hobbiesVal = implode(",", $request['hobbies']);
 
-        // Insert Query che aa laravel ma 
+        // Insert Query che aa laravel ma
         $obj = new Demo;
         $obj->name = $request['name'];
         $obj->email = $request['email'];
@@ -50,6 +50,12 @@ class resourceController extends Controller
         $obj->gender = $request['gender'];
         $obj->state = $request['state'];
         $obj->city = $request['city'];
+
+        $image = $request->file('image');
+        $ext = $image->extension();
+        $image_name = time() . '.' . $ext;
+        $image->storeAs('public/Profile' , $image_name);
+        $obj->Image = $image_name;
         $obj->save();
         return redirect()->route('register.create')->with('status', 'Data Inserted!!');
     }
@@ -92,6 +98,17 @@ class resourceController extends Controller
         $obj->gender = $request['gender'];
         $obj->state = $request['state'];
         $obj->city = $request['city'];
+
+        $old_path = public_path('storage/Profile/');
+        if($obj->Image != ''  && $obj->Image != null){
+            $old_file = $old_path.$obj->Image;
+            unlink($old_file);
+       }
+        $image = $request->file('image');
+        $ext = $image->extension();
+        $image_name = time() . '.' . $ext;
+        $image->storeAs('public/Profile' , $image_name);
+        $obj->Image = $image_name;
         $obj->save();
         return redirect()->route('register.index');
     }

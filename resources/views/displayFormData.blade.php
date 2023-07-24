@@ -25,7 +25,7 @@
     <div class="container mt-5">
         <form action="" class="col-9">
             <input type="search" name="search" class="form-control" placeholder="Search by name or email"
-                value="@if (Request::query('search')) {{ Request::query('search') }}@endif">
+                value="@if (Request::query('search')) {{ Request::query('search') }} @endif">
             <button type="submit" class="btn btn-outline-success"
                 style="position: absolute; right: 33rem; top: 3.1rem">Search</button>
         </form>
@@ -44,6 +44,7 @@
                     <th scope="col">Gender</th>
                     <th scope="col">State</th>
                     <th scope="col">City</th>
+                    <th scope="col">Profile</th>
                     <th scope="col" colspan="2" style="text-align: center">Action</th>
                 </tr>
             </thead>
@@ -59,6 +60,7 @@
                         <td>{{ $item['gender'] }}</td>
                         <td>{{ $item['state'] }}</td>
                         <td>{{ $item['city'] }}</td>
+                        <td><img src="{{ asset('storage/Profile/' . $item['Image']) }}" alt="" height="150" width="150"></td>
                         {{-- first method of delete with url --}}
                         {{-- <td><a href="{{url('deleteData')}}/{{$item->id}}"><button class="btn btn-outline-danger">Delete</button></a></td> --}}
 
@@ -79,7 +81,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{$data->links()}}
+        {{ $data->links() }}
     </div>
 </body>
 

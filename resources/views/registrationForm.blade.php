@@ -21,7 +21,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Registration Form</h1>
-        <form action="{{url('/register')}}" method="POST">
+        <form action="{{url('/register')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -111,6 +111,12 @@
                     <option value="vrindavan">Vrindavan</option>
                 </select>
             </div>
+
+            <div class="mb-3">
+                <label class="form-label">Upload Your Profile:</label>
+                <input type="file" class="form-control" name="image">
+            </div>
+
             <div class="text-center">
                 <button type="submit" class="btn btn-outline-info">Submit</button>
             </div>

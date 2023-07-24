@@ -21,7 +21,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Update Form</h1>
-        <form action="{{ route('register.update', $data->id) }}" method="POST">
+        <form action="{{ route('register.update', $data->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -114,6 +114,13 @@
                     <option value="ahemdabad" {{ $data->city == 'ahemdabad' ? 'selected' : '' }}>Ahemdabad</option>
                     <option value="vrindavan" {{ $data->city == 'vrindavan' ? 'selected' : '' }}>Vrindavan</option>
                 </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Upload Your Profile:</label>
+                <input type="file" class="form-control" name="image" value="{{$data['Image']}}">
+                <img src="{{ asset('storage/Profile/' . $data['Image']) }}" alt="" height="150" width="150">
+
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-outline-info">Update</button>
